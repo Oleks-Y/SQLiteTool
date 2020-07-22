@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>sqltool</id>
+    <version>1.0.0</version>
+    <authors>sqltool</authors>
+    <owners>sqltool</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\obj\DotnetToolSettings.xml" target="tools\netcoreapp3.1\any\DotnetToolSettings.xml" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\sqltool.dll" target="tools\netcoreapp3.1\any\sqltool.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\sqltool.deps.json" target="tools\netcoreapp3.1\any\sqltool.deps.json" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\sqltool.runtimeconfig.json" target="tools\netcoreapp3.1\any\sqltool.runtimeconfig.json" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\sqltool.pdb" target="tools\netcoreapp3.1\any\sqltool.pdb" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Data.Sqlite.dll" target="tools\netcoreapp3.1\any\Microsoft.Data.Sqlite.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.DotNet.PlatformAbstractions.dll" target="tools\netcoreapp3.1\any\Microsoft.DotNet.PlatformAbstractions.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.dll" target="tools\netcoreapp3.1\any\Microsoft.EntityFrameworkCore.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.Abstractions.dll" target="tools\netcoreapp3.1\any\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.Relational.dll" target="tools\netcoreapp3.1\any\Microsoft.EntityFrameworkCore.Relational.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.EntityFrameworkCore.Sqlite.dll" target="tools\netcoreapp3.1\any\Microsoft.EntityFrameworkCore.Sqlite.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Caching.Abstractions.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Caching.Memory.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Caching.Memory.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Configuration.Abstractions.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.DependencyInjection.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.DependencyModel.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.DependencyModel.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Logging.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Logging.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Logging.Abstractions.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Options.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Options.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\Microsoft.Extensions.Primitives.dll" target="tools\netcoreapp3.1\any\Microsoft.Extensions.Primitives.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\SQLitePCLRaw.batteries_v2.dll" target="tools\netcoreapp3.1\any\SQLitePCLRaw.batteries_v2.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\SQLitePCLRaw.nativelibrary.dll" target="tools\netcoreapp3.1\any\SQLitePCLRaw.nativelibrary.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\SQLitePCLRaw.core.dll" target="tools\netcoreapp3.1\any\SQLitePCLRaw.core.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\SQLitePCLRaw.provider.dynamic_cdecl.dll" target="tools\netcoreapp3.1\any\SQLitePCLRaw.provider.dynamic_cdecl.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.Collections.Immutable.dll" target="tools\netcoreapp3.1\any\System.Collections.Immutable.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.ComponentModel.Annotations.dll" target="tools\netcoreapp3.1\any\System.ComponentModel.Annotations.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.Data.SQLite.dll" target="tools\netcoreapp3.1\any\System.Data.SQLite.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.Diagnostics.DiagnosticSource.dll" target="tools\netcoreapp3.1\any\System.Diagnostics.DiagnosticSource.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.Runtime.CompilerServices.Unsafe.dll" target="tools\netcoreapp3.1\any\System.Runtime.CompilerServices.Unsafe.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.Text.Encodings.Web.dll" target="tools\netcoreapp3.1\any\System.Text.Encodings.Web.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\System.Text.Json.dll" target="tools\netcoreapp3.1\any\System.Text.Json.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\alpine-x64\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\alpine-x64\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-arm\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\linux-arm\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-arm64\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\linux-arm64\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-armel\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\linux-armel\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-musl-x64\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\linux-musl-x64\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-x64\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\linux-x64\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-x86\native\libe_sqlite3.so" target="tools\netcoreapp3.1\any\runtimes\linux-x86\native\libe_sqlite3.so" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\osx-x64\native\libe_sqlite3.dylib" target="tools\netcoreapp3.1\any\runtimes\osx-x64\native\libe_sqlite3.dylib" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-arm\native\e_sqlite3.dll" target="tools\netcoreapp3.1\any\runtimes\win-arm\native\e_sqlite3.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-arm64\native\e_sqlite3.dll" target="tools\netcoreapp3.1\any\runtimes\win-arm64\native\e_sqlite3.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-x64\native\e_sqlite3.dll" target="tools\netcoreapp3.1\any\runtimes\win-x64\native\e_sqlite3.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-x86\native\e_sqlite3.dll" target="tools\netcoreapp3.1\any\runtimes\win-x86\native\e_sqlite3.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-x64\native\netstandard2.0\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\linux-x64\native\netstandard2.0\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\linux-x64\native\netstandard2.1\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\linux-x64\native\netstandard2.1\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\osx-x64\native\netstandard2.0\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\osx-x64\native\netstandard2.0\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\osx-x64\native\netstandard2.1\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\osx-x64\native\netstandard2.1\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-x64\native\netstandard2.0\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\win-x64\native\netstandard2.0\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-x64\native\netstandard2.1\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\win-x64\native\netstandard2.1\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-x86\native\netstandard2.0\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\win-x86\native\netstandard2.0\SQLite.Interop.dll" />
+    <file src="C:\Users\User\RiderProjects\ConsoleApp1\sqltool\bin\Debug\netcoreapp3.1\publish\runtimes\win-x86\native\netstandard2.1\SQLite.Interop.dll" target="tools\netcoreapp3.1\any\runtimes\win-x86\native\netstandard2.1\SQLite.Interop.dll" />
+  </files>
+</package>
