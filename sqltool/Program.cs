@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using ConsoleApp1.Models;
 using ConsoleApp1.SQLResults;
 
 namespace ConsoleApp1
@@ -44,6 +47,9 @@ namespace ConsoleApp1
                             //Console.WriteLine("Debug.Executing query with result");
                             //TODO Execute query with result
                             ExecuteQueryWithResult(args[1]);
+                            break;
+                        case "-addin":
+                            AddValues(args[1]);
                             break;
                         default:
                             Console.Write("\n  Command not found check the option ");
@@ -145,6 +151,41 @@ namespace ConsoleApp1
             sw.Close();
             Console.WriteLine("\n Database saved successfully \n");
         }
+
+        private static void AddValues(string tableName)
+        {
+            // Show form with all columns to fill the data
+            ITable colums  =new Table();
+            try
+            {
+                colums = executor.GetColumnNames(tableName);
+            }
+            catch (NullDbResultException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid query");
+                Console.ResetColor();
+            }
+
+            var input = new Dictionary<string, string>();
+            foreach (var column in colums.Columns)
+            {
+                Console.Write(column.Name);
+                Console.Write($"({column.DataType}):");
+                string value = "";
+                
+                while ((!column.IsNull && value==""))
+                {
+                    value = Console.ReadLine();
+                }
+                input.Add(column.Name, value);
+            }
+            executor.NewQuery();
+            var response = executor.InsertQuery(input, tableName);
+            Console.ForegroundColor = response.ConsoleColor;
+            Console.WriteLine(response.Message);
+            Console.ResetColor();
+        } 
 
    }
     

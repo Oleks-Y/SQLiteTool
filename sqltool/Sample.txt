@@ -1,1 +1,1 @@
-empty
+C:\Users\User\RiderProjects\ConsoleApp1\sqltool\db1.db

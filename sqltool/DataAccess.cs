@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using ConsoleApp1.Models;
 using ConsoleApp1.SQLResults;
 using Microsoft.VisualBasic;
 
@@ -10,7 +11,7 @@ namespace ConsoleApp1
 {
     public class DataAccess
     {
-        private readonly SQLiteConnection _connection;
+        private SQLiteConnection _connection;
         public static string DbPath { get; set; }
 
         public DataAccess(string dbPath)
@@ -20,6 +21,21 @@ namespace ConsoleApp1
             _connection = new SQLiteConnection(connectionString.ConnectionString);
         }
 
+        public void NewQuery()
+        {
+            var connectionString = new SQLiteConnectionStringBuilder {DataSource = DbPath};
+            _connection = new SQLiteConnection(connectionString.ConnectionString); 
+            
+        }
+        public SQLResult InsertQuery(Dictionary<string, string> data, string tableName)
+        {
+            string query = 
+                $"INSERT INTO {tableName}  VALUES('{String.Join("','",data.Values.ToArray())}')";
+
+            return ExecuteQuery(query);
+        }
+
+        
         public SQLResult ExecuteQuery(string query)
         {
             try
@@ -48,6 +64,7 @@ namespace ConsoleApp1
 
         public SQLResult ExecuteQueryResult(string query)
         {
+            //TODO Add Table in SQLResult
             
             try
             {
@@ -103,6 +120,26 @@ namespace ConsoleApp1
             {
                 return new ErrorResult(ex.Message);
             }
+        }
+
+        public ITable GetColumnNames(string tableName)
+        {
+            string[,] result = ExecuteQueryResult($"SELECT * FROM pragma_table_info('{tableName}')").Data;
+            if (result == null)
+            {
+                throw new NullDbResultException();
+            }
+            Table table = new Table();
+            for (int i = 1; i < result.GetLength(0); i++)
+            {
+                table.Columns.Add(new Column()
+                {
+                    Name = result[i, 1],
+                    IsNull = (result[i, 3]=="1"),
+                    DataType = result[i,2]
+                });
+            }
+            return table;
         }
 
         
