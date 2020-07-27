@@ -10,29 +10,53 @@ namespace ConsoleApp1
 {
     class Program
     {
-        private static string _dbPath;
-        private static DataAccess executor;
+        private static string connectionString;
+        private static IDataAccess executor;
         static void Main(string[] args)
         {
-            _dbPath = ReadVariable();
-            executor = new DataAccess(_dbPath);
+            connectionString = ReadVariable();
+            
             switch (args.Length)
             {
+                case 4:
+                    switch (args[0])
+                    {
+                        case "-psgr":
+                            // DataBase Login Password
+                            connectionString =
+                                $"Host=localhost;Username={args[2]};Password={args[3]};Database={args[1]}";
+                            executor = new PostgresDataAccess(connectionString);
+                            
+                            SaveValue(connectionString);
+                            SaveType("postgres");
+                            break;
+                        default:
+                            Console.Write("\n  Command not found check the option ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.Write(@"--h");
+                            Console.ResetColor();
+                            Console.Write(" for more information \n\n");
+                            break;
+                    }
+                    break;
                 case 2 :
                     switch (args[0])
                     {
-                        case "-db":
+                        case "-sqlite":
                             SaveValue(args[1]);
-                            _dbPath = args[1];
-                            executor = new DataAccess(_dbPath);
+                            SaveType("sqlite");
+                            connectionString = args[1];
+                            executor = new SqLiteDataAccess(connectionString);
+                            
                             break;
-                        case "-q" when _dbPath == "":
+                       
+                        case "-q" when connectionString == "":
                             Console.Write("\n Please Specify the sqlite database path first by typing ");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(@"-db ""path""" + Environment.NewLine + Environment.NewLine);
                             Console.ResetColor();
                             break;
-                        case "-r" when _dbPath == "":
+                        case "-r" when connectionString == "":
                             Console.Write("\n Please Specify the sqlite database path first by typing ");
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.Write(@"-db ""path""" + Environment.NewLine + Environment.NewLine);
@@ -40,12 +64,12 @@ namespace ConsoleApp1
                             break;
                         case "-q":
                             //Console.WriteLine("Debug.Executing query");
-                            //TODO Execute query
+                            
                             ExecuteQuery(args[1]);
                             break;
                         case "-r":
                             //Console.WriteLine("Debug.Executing query with result");
-                            //TODO Execute query with result
+                            
                             ExecuteQueryWithResult(args[1]);
                             break;
                         case "-addin":
@@ -82,7 +106,8 @@ namespace ConsoleApp1
         }
         private static void ExecuteQuery(string query)
         {
-            if (_dbPath == null)
+            executor = CreateConnection();
+            if (connectionString == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Specify table!");
@@ -105,7 +130,8 @@ namespace ConsoleApp1
 
         private static void ExecuteQueryWithResult(string query)
         {
-            if (_dbPath == null)
+            executor = CreateConnection();
+            if (connectionString == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Specify table!");
@@ -122,14 +148,30 @@ namespace ConsoleApp1
             catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Operation don`t have output");
+                Console.WriteLine(ex.Message);
                 Console.ResetColor();
             }
 
         }
         private static string ReadVariable()
         {
-            const string path = "Sample.txt";
+            const string path = "SampleNew.txt";
+            if (!File.Exists(path))
+            {
+                File.Create(path).Dispose();
+                using (TextWriter tw = new StreamWriter(path))
+                {
+                    tw.Write("empty");
+                }
+            }
+            var sr = new StreamReader(path);
+            var line = sr.ReadLine();
+            sr.Close();
+            return line;
+        }
+        private static string ReadType()
+        {
+            const string path = "Type.txt";
             if (!File.Exists(path))
             {
                 File.Create(path).Dispose();
@@ -146,14 +188,27 @@ namespace ConsoleApp1
 
         private static void SaveValue(string value)
         {
-            var sw = new StreamWriter("Sample.txt");
+            var sw = new StreamWriter("SampleNew.txt");
+            
             sw.Write(value);
             sw.Close();
+            
+
             Console.WriteLine("\n Database saved successfully \n");
         }
+        private static void SaveType(string value)
+        {
+            var sw = new StreamWriter("Type.txt");
+            
+            sw.Write(value);
+            sw.Close();
+            
 
+            Console.WriteLine("\n Database saved successfully \n");
+        }
         private static void AddValues(string tableName)
         {
+            executor = CreateConnection();
             // Show form with all columns to fill the data
             ITable colums  =new Table();
             try
@@ -185,15 +240,34 @@ namespace ConsoleApp1
             Console.ForegroundColor = response.ConsoleColor;
             Console.WriteLine(response.Message);
             Console.ResetColor();
-        } 
+        }
+
+        private static IDataAccess CreateConnection()
+        {
+            string type = ReadType();
+            switch (type)
+            {
+                case "sqlite":
+                    return new SqLiteDataAccess(connectionString);
+                    break;
+                case "postgres":
+                    return new PostgresDataAccess(connectionString);
+                    break;
+                default:
+                    return null;
+            }
+            
+        }
 
    }
     
+    
    //TODO Check db path 
    //TODO Test all queries
-   //TODO Add DI
-   //TODO Add Simple Insert with form
+   //Todo write documentation on github
    
+   //TODO parsing console args in different class
+   //Todo remove useless sqlresults
     
     
 }

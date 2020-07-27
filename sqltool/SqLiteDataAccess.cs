@@ -9,12 +9,12 @@ using Microsoft.VisualBasic;
 
 namespace ConsoleApp1
 {
-    public class DataAccess
+    public class SqLiteDataAccess : IDataAccess
     {
         private SQLiteConnection _connection;
         public static string DbPath { get; set; }
 
-        public DataAccess(string dbPath)
+        public SqLiteDataAccess(string dbPath)
         {
             DbPath = dbPath;
             var connectionString = new SQLiteConnectionStringBuilder {DataSource = dbPath};
@@ -29,8 +29,10 @@ namespace ConsoleApp1
         }
         public SQLResult InsertQuery(Dictionary<string, string> data, string tableName)
         {
+            // Check if columns in Dictionary matches column in table
+            // OR Pass ITable element
             string query = 
-                $"INSERT INTO {tableName}  VALUES('{String.Join("','",data.Values.ToArray())}')";
+                $"INSERT INTO {tableName} VALUES('{String.Join("','",data.Values.ToArray())}')";
 
             return ExecuteQuery(query);
         }
@@ -61,6 +63,8 @@ namespace ConsoleApp1
             }
 
         }
+
+       
 
         public SQLResult ExecuteQueryResult(string query)
         {

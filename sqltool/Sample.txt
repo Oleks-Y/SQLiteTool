@@ -1,1 +1,1 @@
-C:\Users\User\RiderProjects\ConsoleApp1\sqltool\db1.db
+"Host=localhost;Username=postgres;Password=postgres;Database=First"
