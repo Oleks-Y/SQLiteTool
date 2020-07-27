@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using ConsoleApp1.SQLResults;
+
 
 namespace ConsoleApp1.Models
 {
     public interface IDataAccess
     {
-        SQLResult  ExecuteQuery(string query);
+        void  ExecuteQuery(string query);
 
-        SQLResult ExecuteQueryResult(string query);
+        string[,] ExecuteQueryResult(string query);
 
-        SQLResult InsertQuery(Dictionary<string, string> data, string tableName);
+        void InsertQuery(Dictionary<string, string> data, string tableName);
 
         ITable GetColumnNames(string tableName);
 

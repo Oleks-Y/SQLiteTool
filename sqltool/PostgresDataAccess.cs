@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ConsoleApp1.Models;
-using ConsoleApp1.SQLResults;
+
 using Npgsql;
 
 namespace ConsoleApp1
@@ -14,24 +14,22 @@ namespace ConsoleApp1
 
         public PostgresDataAccess(string cs)
         {
-            //!!!!!!!!!!!!!!!!!!!!
-            //Check if database exists!!!!!
+            
+            //TODO Check if database exists!!!!!
          _connection = new NpgsqlConnection(cs);
          ConnectionString = cs;
         }
-        public SQLResult ExecuteQuery(string query)
+        public void ExecuteQuery(string query)
         {
             using (var cmd = new NpgsqlCommand(query, _connection))
             {
                     _connection.Open();
 
                     var result = cmd.ExecuteScalar();
-                    return new OkResult("Query executed successfully");
             }
-           
         }
 
-        public SQLResult ExecuteQueryResult(string query)
+        public string[,] ExecuteQueryResult(string query)
         {
             using (var cmd = new NpgsqlCommand(query, _connection))
             {
@@ -71,23 +69,24 @@ namespace ConsoleApp1
                             arrValues[j, i] = " " + values[key][j-1] + " ";
                         }
                     }
-                    return new OkWithTable($"Query succesfull : {query}", arrValues);
+
+                    return arrValues;
                 }
             }
         }
 
-        public SQLResult InsertQuery(Dictionary<string, string> data, string tableName)
+        public void InsertQuery(Dictionary<string, string> data, string tableName)
         {
             string query = 
                 $"INSERT INTO {tableName} VALUES('{String.Join("','",data.Values.ToArray())}')";
 
-            return ExecuteQuery(query);
+            
         }
 
         public ITable GetColumnNames(string tableName)
         {
             string query = $"SELECT column_name, is_nullable, data_type  FROM information_schema.columns WHERE table_name   = '{tableName}';";
-            string[,] result = ExecuteQueryResult(query).Data;
+            string[,] result = ExecuteQueryResult(query);
             if (result == null)
             {
                 throw  new NullDbResultException();

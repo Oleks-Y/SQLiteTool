@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using ConsoleApp1.Models;
-using ConsoleApp1.SQLResults;
+
 using Microsoft.VisualBasic;
 
 namespace ConsoleApp1
@@ -27,23 +27,21 @@ namespace ConsoleApp1
             _connection = new SQLiteConnection(connectionString.ConnectionString); 
             
         }
-        public SQLResult InsertQuery(Dictionary<string, string> data, string tableName)
+        public void InsertQuery(Dictionary<string, string> data, string tableName)
         {
             // Check if columns in Dictionary matches column in table
             // OR Pass ITable element
             string query = 
                 $"INSERT INTO {tableName} VALUES('{String.Join("','",data.Values.ToArray())}')";
 
-            return ExecuteQuery(query);
+            ExecuteQuery(query);
         }
 
         
-        public SQLResult ExecuteQuery(string query)
+        public void ExecuteQuery(string query)
         {
-            try
+            using (_connection)
             {
-                using (_connection)
-                {
                     _connection.Open();
 
                     using (var transation = _connection.BeginTransaction())
@@ -53,25 +51,15 @@ namespace ConsoleApp1
                         cmd.ExecuteNonQuery();
                         transation.Commit();
                     }
-                }
-
-                return new OkResult("Query executed succesfuly");
             }
-            catch (Exception ex)
-            {
-                return new ErrorResult(ex.Message);
-            }
-
         }
 
        
 
-        public SQLResult ExecuteQueryResult(string query)
+        public string[,] ExecuteQueryResult(string query)
         {
-            //TODO Add Table in SQLResult
+           
             
-            try
-            {
                 using (_connection)
                 {
                     _connection.Open();
@@ -80,7 +68,7 @@ namespace ConsoleApp1
 
                     using (var reader = command.ExecuteReader())
                     {
-                        // TODO Write some more effective shit 
+                        
                         int count = reader.FieldCount;
                          int numberRecord = 0;
                        //Load data from db to dictionary in format
@@ -114,21 +102,15 @@ namespace ConsoleApp1
                                 arrValues[j, i] = " " + values[key][j-1] + " ";
                             }
                         }
-                        return new OkWithTable($"Query succesfull : {query}", arrValues);
-
-
+                        return arrValues;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                return new ErrorResult(ex.Message);
-            }
+                
         }
 
         public ITable GetColumnNames(string tableName)
         {
-            string[,] result = ExecuteQueryResult($"SELECT * FROM pragma_table_info('{tableName}')").Data;
+            string[,] result = ExecuteQueryResult($"SELECT * FROM pragma_table_info('{tableName}')");
             if (result == null)
             {
                 throw new NullDbResultException();

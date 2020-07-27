@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using ConsoleApp1.Models;
-using ConsoleApp1.SQLResults;
+
 
 namespace ConsoleApp1
 {
@@ -115,9 +115,9 @@ namespace ConsoleApp1
             }
             try
             {
-                var result = executor.ExecuteQuery(query);
-                Console.ForegroundColor = result.ConsoleColor;
-                Console.WriteLine(result.Message);
+                executor.ExecuteQuery(query);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Query executed successfully");
                 Console.ResetColor();
             }
             catch (Exception ex)
@@ -138,12 +138,12 @@ namespace ConsoleApp1
                 Console.ResetColor();
             }
             var result = executor.ExecuteQueryResult(query);
-            Console.ForegroundColor = result.ConsoleColor;
-            Console.WriteLine(result.Message);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Query executed successfully");
             Console.ResetColor();
             try
             {
-                Console.WriteLine(TableMaker.GetDataInTableFormat(result.Data));
+                Console.WriteLine(TableMaker.GetDataInTableFormat(result));
             }
             catch (Exception ex)
             {
@@ -153,6 +153,62 @@ namespace ConsoleApp1
             }
 
         }
+       
+        private static void AddValues(string tableName)
+        {
+            executor = CreateConnection();
+            // Show form with all columns to fill the data
+            ITable colums  =new Table();
+            try
+            {
+                colums = executor.GetColumnNames(tableName);
+            }
+            catch (NullDbResultException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid query");
+                Console.ResetColor();
+            }
+
+            var input = new Dictionary<string, string>();
+            foreach (var column in colums.Columns)
+            {
+                Console.Write(column.Name);
+                Console.Write($"({column.DataType}):");
+                string value = "";
+                
+                while ((!column.IsNull && value==""))
+                {
+                    value = Console.ReadLine();
+                }
+                input.Add(column.Name, value);
+            }
+            executor.NewQuery();
+            executor.InsertQuery(input, tableName);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Query executed successfully");
+            Console.ResetColor();
+        }
+
+        private static IDataAccess CreateConnection()
+        {
+            string type = ReadType();
+            switch (type)
+            {
+                case "sqlite":
+                    return new SqLiteDataAccess(connectionString);
+                    break;
+                case "postgres":
+                    return new PostgresDataAccess(connectionString);
+                    break;
+                default:
+                    return null;
+            }
+            
+        }
+        
+        
+        #region Cashe
         private static string ReadVariable()
         {
             const string path = "SampleNew.txt";
@@ -186,6 +242,8 @@ namespace ConsoleApp1
             return line;
         }
 
+        
+
         private static void SaveValue(string value)
         {
             var sw = new StreamWriter("SampleNew.txt");
@@ -206,68 +264,16 @@ namespace ConsoleApp1
 
             Console.WriteLine("\n Database saved successfully \n");
         }
-        private static void AddValues(string tableName)
-        {
-            executor = CreateConnection();
-            // Show form with all columns to fill the data
-            ITable colums  =new Table();
-            try
-            {
-                colums = executor.GetColumnNames(tableName);
-            }
-            catch (NullDbResultException ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid query");
-                Console.ResetColor();
-            }
-
-            var input = new Dictionary<string, string>();
-            foreach (var column in colums.Columns)
-            {
-                Console.Write(column.Name);
-                Console.Write($"({column.DataType}):");
-                string value = "";
-                
-                while ((!column.IsNull && value==""))
-                {
-                    value = Console.ReadLine();
-                }
-                input.Add(column.Name, value);
-            }
-            executor.NewQuery();
-            var response = executor.InsertQuery(input, tableName);
-            Console.ForegroundColor = response.ConsoleColor;
-            Console.WriteLine(response.Message);
-            Console.ResetColor();
-        }
-
-        private static IDataAccess CreateConnection()
-        {
-            string type = ReadType();
-            switch (type)
-            {
-                case "sqlite":
-                    return new SqLiteDataAccess(connectionString);
-                    break;
-                case "postgres":
-                    return new PostgresDataAccess(connectionString);
-                    break;
-                default:
-                    return null;
-            }
-            
-        }
-
+        #endregion
    }
     
     
-   //TODO Check db path 
-   //TODO Test all queries
+   
+   
    //Todo write documentation on github
    
-   //TODO parsing console args in different class
-   //Todo remove useless sqlresults
+   
+  
     
     
 }
