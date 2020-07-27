@@ -87,10 +87,12 @@ namespace ConsoleApp1
                 case 1 when args[0] == "--h":
                     Console.WriteLine("\n => Welcome to sqlite .net core global tool version 1.0");
                     Console.WriteLine("\nOptions:");
-                    Console.WriteLine(@"   -db ""Sqlite Database Path""");
+                    Console.WriteLine(@"   -sqlite ""Sqlite Database Path""");
+                    Console.WriteLine(@"   -psgr database_name login password");
                     Console.WriteLine(@"   -q  ""Query to execute""");
                     Console.WriteLine(@"   -r  ""Query to execute with result""");
                     Console.WriteLine(@"   -s  ""the table that you want to show, its data""");
+                    Console.WriteLine(@"   -addin  ""the table that you want to add data in """);
                     Console.WriteLine();
                     break;
                 case 1:
@@ -271,7 +273,7 @@ namespace ConsoleApp1
    
    
    //Todo write documentation on github
-   
+   //TODO Add more functionality
    
   
     
